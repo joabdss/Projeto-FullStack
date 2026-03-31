@@ -5,9 +5,7 @@ import sql from "./db.js";
 
 const app = express();
 
-app.use(cors({
-  origin: "http://localhost:3000"
-}));
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -15,8 +13,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/tasks", async (req, res) => {
-  const tasks = await sql`SELECT * FROM tasks`;
-  res.json(tasks);
+  try {
+    const tasks = await sql`SELECT * FROM tasks`;
+    res.json(tasks);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro no banco" });
+  }
 });
 
 
