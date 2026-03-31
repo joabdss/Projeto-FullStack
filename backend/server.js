@@ -19,8 +19,12 @@ app.get("/tasks", async (req, res) => {
   res.json(tasks);
 });
 
-app.listen(3001, () => {
-  console.log("Servidor rodando na porta 3001");
+
+// Render rodar
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
 
 // POST

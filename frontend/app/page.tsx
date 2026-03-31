@@ -8,7 +8,7 @@ export default function Home() {
 
   // buscar tarefas
   const fetchTasks = async () => {
-    const res = await fetch("http://127.0.0.1:3001/tasks");
+    const res = await fetch("https://projeto-fullstack-v2q4.onrender.com");
     const data = await res.json();
     setTasks(data);
   };
@@ -29,7 +29,7 @@ export default function Home() {
   try {
     console.log("enviando pro backend...");
 
-    const res = await fetch("http://127.0.0.1:3001/tasks", {
+    const res = await fetch("https://projeto-fullstack-v2q4.onrender.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export default function Home() {
 
   // deletar tarefa
   const deleteTask = async (id: number) => {
-    await fetch(`http://127.0.0.1:3001/tasks/${id}`, {
+    await fetch(`https://projeto-fullstack-v2q4.onrender.com/tasks/${id}`, {
       method: "DELETE",
     });
 
@@ -58,7 +58,7 @@ export default function Home() {
 
   // marcar como concluída
   const toggleTask = async (id: number, done: boolean) => {
-    await fetch(`http://127.0.0.1:3001/tasks/${id}`, {
+    await fetch(`https://projeto-fullstack-v2q4.onrender.com/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
