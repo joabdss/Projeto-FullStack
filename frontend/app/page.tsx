@@ -6,9 +6,9 @@ export default function Home() {
   const [tasks, setTasks] = useState<any[]>([]);
   const [title, setTitle] = useState("");
 
-  // buscar tarefas
+  // buscar tarefas (GET)
   const fetchTasks = async () => {
-    const res = await fetch("https://projeto-fullstack-v2q4.onrender.com");
+    const res = await fetch("https://projeto-fullstack-v2q4.onrender.com/tasks");
     const data = await res.json();
     setTasks(data);
   };
@@ -17,7 +17,8 @@ export default function Home() {
     fetchTasks();
   }, []);
 
-  // criar tarefa
+
+  // criar tarefa (POST)
   const createTask = async () => {
   console.log("clicou no botão");
 
@@ -29,7 +30,7 @@ export default function Home() {
   try {
     console.log("enviando pro backend...");
 
-    const res = await fetch("https://projeto-fullstack-v2q4.onrender.com", {
+    const res = await fetch("https://projeto-fullstack-v2q4.onrender.com/tasks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +48,7 @@ export default function Home() {
   }
 };
 
-  // deletar tarefa
+  // deletar tarefa (DELETE)
   const deleteTask = async (id: number) => {
     await fetch(`https://projeto-fullstack-v2q4.onrender.com/tasks/${id}`, {
       method: "DELETE",
@@ -56,7 +57,7 @@ export default function Home() {
     fetchTasks();
   };
 
-  // marcar como concluída
+  // marcar como concluída (PUT)
   const toggleTask = async (id: number, done: boolean) => {
     await fetch(`https://projeto-fullstack-v2q4.onrender.com/tasks/${id}`, {
       method: "PUT",
