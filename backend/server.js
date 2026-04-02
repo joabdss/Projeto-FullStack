@@ -17,8 +17,8 @@ app.get("/tasks", async (req, res) => {
     const tasks = await sql`SELECT * FROM tasks`;
     res.json(tasks);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro no banco" });
+    console.error("ERRO REAL:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 
